@@ -2,7 +2,6 @@ const axios = require("axios");
 
 const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
-  console.log(req.body, req.query);
   let {userId} = req.body;
   if(req.method === 'GET') {
     userId = req.query.userId;
