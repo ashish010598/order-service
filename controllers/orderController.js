@@ -3,7 +3,7 @@ const OrderService = require("../services/orderService");
 // Create an order
 exports.createOrder = async (req, res) => {
   try {
-    const { products,userId } = req.body;
+    const { products, userId } = req.body;
     const order = await OrderService.createOrder(userId, products);
     res.status(201).json(order);
   } catch (error) {
@@ -23,16 +23,17 @@ exports.getUserOrders = async (req, res) => {
 
 // Update order
 exports.updateOrder = async (req, res) => {
-    try {
-        const { orderId, productId, status } = req.body;
-        let order;
-        if (productId) {
-            order = await OrderService.updateOrder(orderId, productId, status);
-        } else {
-            order = await OrderService.updateOrder(orderId, status);
-        }
-        res.status(200).json(order);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+  try {
+    const { id: orderId } = req.params;
+    const { productId, status } = req.body;
+    let order;
+    if (productId) {
+      order = await OrderService.updateOrder(orderId, productId, status);
+    } else {
+      order = await OrderService.updateOrder(orderId, null, status);
     }
+    res.status(200).json({ message: "Order updated successfully", order });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };

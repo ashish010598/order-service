@@ -116,6 +116,8 @@ npm start
 }
 ```
 
+#### CURL:
+
 ```ssh
 curl --location 'http://localhost:5000/orders' \
 --header 'Authorization: Bearer sjkjbfsdbbfbbfjshbfjshdbfjsbfjshbfjshb' \
@@ -185,21 +187,33 @@ curl --location 'http://localhost:5000/orders' \
 ]
 ```
 
+#### CURL:
+
 ```ssh
 curl --location 'http://localhost:5000/orders?userId=user_123' \
 --header 'Authorization: Bearere hfsdjhfjsfbjsdfsdf'
 ```
 
-### 3️⃣ Update Order Status
+### 3️⃣ Update Order/Product Status
 
-**PUT** `/api/orders/update`
+**PUT** `/api/orders/:orderId`
 
-#### Request Body:
+#### Request Body (single product):
 
 ```json
 {
-  "orderId": "order123",
-  "status": "Shipped"
+  "userId": "user_123",
+  "productId": "prod_1",
+  "status": "in-transit"
+}
+```
+
+#### Request Body (whole order):
+
+```json
+{
+  "userId": "user_123",
+  "status": "in-transit"
 }
 ```
 
@@ -207,41 +221,34 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
 
 ```json
 {
-  "orderId": "order123",
-  "status": "Shipped",
-  "products": [
-    { "productId": "prod1", "quantity": 2, "status": "Shipped" },
-    { "productId": "prod2", "quantity": 1, "status": "Shipped" }
-  ]
-}
-```
-
-### 4️⃣ Cancel a Product or Order
-
-**PUT** `/api/orders/cancel`
-
-#### Request Body (Cancel Single Product):
-
-```json
-{
-  "orderId": "order123",
-  "productId": "prod1"
-}
-```
-
-#### Request Body (Cancel Entire Order):
-
-```json
-{
-  "orderId": "order123"
-}
-```
-
-#### Response:
-
-```json
-{
-  "message": "Order/Product canceled successfully"
+  "message": "Order updated successfully",
+  "order": {
+    "_id": "67e7736e88e054822c38166e",
+    "userId": "user_123",
+    "products": [
+      {
+        "productName": "Product 1",
+        "productId": "prod_1",
+        "quantity": 1,
+        "price": 100,
+        "status": "Delivered",
+        "_id": "67e7736e88e054822c38166f"
+      },
+      {
+        "productName": "Product 2",
+        "productId": "prod_2",
+        "quantity": 1,
+        "price": 200,
+        "status": "in-transit",
+        "_id": "67e7736e88e054822c381670"
+      }
+    ],
+    "totalAmount": 300,
+    "status": "in-transit",
+    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
+    "createdAt": "2025-03-29T04:13:34.442Z",
+    "__v": 0
+  }
 }
 ```
 
@@ -255,7 +262,6 @@ order-service/
 │   ├── orderModel.js
 │-- services/
 │   ├── orderService.js
-│   ├── userService.js
 │-- middleware/
 │   ├── authMiddleware.js
 │-- routes/

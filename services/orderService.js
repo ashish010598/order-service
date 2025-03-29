@@ -2,7 +2,10 @@ const Order = require("../models/Order");
 
 // Create a new order
 const createOrder = async (userId, products) => {
-  const totalAmount = products.reduce((sum, p) => sum + p.price * p.quantity, 0);
+  const totalAmount = products.reduce(
+    (sum, p) => sum + p.price * p.quantity,
+    0
+  );
   const order = new Order({ userId, products, totalAmount });
   return await order.save();
 };
@@ -13,26 +16,19 @@ const getUserOrders = async (userId) => {
 };
 
 // Update order details
-const updateOrder = async (req, res) => {
-    try {
-      const { orderId, productId, status } = req.body;
-      let order = await Order.findById(orderId);
-  
-      if (!order) return res.status(404).json({ error: 'Order not found' });
-  
-      if (productId) {
-        order.products.forEach((p) => {
-          if (p.productId === productId) p.status = status;
-        });
-      } else {
-        order.status = status;
-        order.products.forEach((p) => (p.status = status));
-      } 
-      await order.save();
-      res.json(order);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
+const updateOrder = async (orderId, productId, status) => {
+  let order = await Order.findOne({ orderId });
 
-module.exports = { createOrder, getUserOrders, updateOrder};
+  if (!order) throw new Error("Order not found");
+  if (productId) {
+    order.products.forEach((p) => {
+      if (p.productId === productId) p.status = status;
+    });
+  } else {
+    order.status = status;
+    order.products.forEach((p) => (p.status = status));
+  }
+  return await order.save();
+};
+
+module.exports = { createOrder, getUserOrders, updateOrder };
