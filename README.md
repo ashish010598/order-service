@@ -66,10 +66,20 @@ npm start
 
 ```json
 {
-  "userId": "user123",
+  "userId": "user_123",
   "products": [
-    { "productId": "prod1", "quantity": 2 },
-    { "productId": "prod2", "quantity": 1 }
+    {
+      "productName": "Product 1",
+      "productId": "prod_1",
+      "quantity": 1,
+      "price": 100
+    },
+    {
+      "productName": "Product 2",
+      "productId": "prod_2",
+      "quantity": 1,
+      "price": 200
+    }
   ]
 }
 ```
@@ -78,24 +88,66 @@ npm start
 
 ```json
 {
-  "orderId": "order123",
-  "status": "Pending",
+  "userId": "user_123",
   "products": [
-    { "productId": "prod1", "quantity": 2, "status": "Pending" },
-    { "productId": "prod2", "quantity": 1, "status": "Pending" }
-  ]
+    {
+      "productName": "Product 1",
+      "productId": "prod_1",
+      "quantity": 1,
+      "price": 100,
+      "status": "pending",
+      "_id": "67e7736e88e054822c38166f"
+    },
+    {
+      "productName": "Product 2",
+      "productId": "prod_2",
+      "quantity": 1,
+      "price": 200,
+      "status": "pending",
+      "_id": "67e7736e88e054822c381670"
+    }
+  ],
+  "totalAmount": 300,
+  "status": "pending",
+  "_id": "67e7736e88e054822c38166e",
+  "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
+  "createdAt": "2025-03-29T04:13:34.442Z",
+  "__v": 0
 }
+```
+
+```ssh
+curl --location 'http://localhost:5000/orders' \
+--header 'Authorization: Bearer sjkjbfsdbbfbbfjshbfjshdbfjsbfjshbfjshb' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": "user_123",
+    "products": [
+        {
+            "productName": "Product 1",
+            "productId":"prod_1",
+            "quantity": 1,
+            "price": 100
+        },
+        {
+            "productName": "Product 2",
+            "productId": "prod_2",
+            "quantity": 1,
+            "price": 200
+        }
+    ]
+}'
 ```
 
 ### 2️⃣ Get Orders
 
-**POST** `/api/orders/list`
+**GET** `/api/orders`
 
-#### Request Body:
+#### Request Param
 
 ```json
 {
-  "userId": "user123"
+  "userId": "user_123"
 }
 ```
 
@@ -104,14 +156,38 @@ npm start
 ```json
 [
   {
-    "orderId": "order123",
-    "status": "Pending",
+    "_id": "67e7736e88e054822c38166e",
+    "userId": "user_123",
     "products": [
-      { "productId": "prod1", "quantity": 2, "status": "Pending" },
-      { "productId": "prod2", "quantity": 1, "status": "Pending" }
-    ]
+      {
+        "productName": "Product 1",
+        "productId": "prod_1",
+        "quantity": 1,
+        "price": 100,
+        "status": "pending",
+        "_id": "67e7736e88e054822c38166f"
+      },
+      {
+        "productName": "Product 2",
+        "productId": "prod_2",
+        "quantity": 1,
+        "price": 200,
+        "status": "pending",
+        "_id": "67e7736e88e054822c381670"
+      }
+    ],
+    "totalAmount": 300,
+    "status": "pending",
+    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
+    "createdAt": "2025-03-29T04:13:34.442Z",
+    "__v": 0
   }
 ]
+```
+
+```ssh
+curl --location 'http://localhost:5000/orders?userId=user_123' \
+--header 'Authorization: Bearere hfsdjhfjsfbjsdfsdf'
 ```
 
 ### 3️⃣ Update Order Status
