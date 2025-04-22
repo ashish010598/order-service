@@ -58,7 +58,7 @@ npm start
 
 ## API Endpoints
 
-### 1️⃣ Create an Order
+### 1. Create an Order
 
 **POST** `/api/orders`
 
@@ -141,7 +141,7 @@ curl --location 'http://localhost:5000/orders' \
 }'
 ```
 
-### 2️⃣ Get Orders
+### 2. Get Orders
 
 **GET** `/api/orders`
 
@@ -191,10 +191,10 @@ curl --location 'http://localhost:5000/orders' \
 
 ```ssh
 curl --location 'http://localhost:5000/orders?userId=user_123' \
---header 'Authorization: Bearere hfsdjhfjsfbjsdfsdf'
+--header 'Authorization: Bearer hfsdjhfjsfbjsdfsdf'
 ```
 
-### 3️⃣ Update Order/Product Status
+### 3. Update Order/Product Status
 
 **PUT** `/api/orders/:orderId`
 
@@ -276,13 +276,18 @@ order-service/
 
 - The **User Service API** should be running for authentication to work.
 - Token validation occurs before every request to ensure security.
+- For all protected routes, include token like this:
+
+```bash
+-H "Authorization: Bearer <your_token>"
+```
 
 ## Author
 
 **Ashish Pathak**  
-2024TM93035@wilp.bits-pilani.co.in
-Your GitHub: [YourGitHub](https://github.com/ashish010598)
+2024TM93035@wilp.bits-pilani.co.in <br />
+[GitHub](https://github.com/ashish010598)
 
 ## License
 
-This project is licensed under the MIT License.
+This project is for educational purpose only. Made for Assignment submission for Course: **Scalable Services**
