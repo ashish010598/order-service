@@ -1,64 +1,71 @@
-# Order Service Microservice
+# 📦 Order Service Microservice
 
 This is the **Order Service** microservice for an e-commerce system, responsible for handling order creation, updates, cancellations, and retrieving order details.
 
-## Features
+## 🚀 Features
 
-- Create an order with multiple products
-- Update global order status or specific product status
-- Cancel a single product or the entire order
-- Authenticate users via token validation with the User Service
+- ✅ Create orders with multiple products
+- 🔁 Update entire order status or specific product status
+- ❌ Cancel one product or the whole order
+- 🔐 JWT-based authentication via external **User Service**
+- 📦 Containerized with Docker & Docker Compose
+- 🧩 Clean MVC structure (Controller ➜ Service ➜ Model)
 
-## Tech Stack
+## 🧰 Tech Stack
 
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JWT-based token validation
 - **Architecture:** MVC (Model-View-Controller) pattern
 
-## Installation & Setup
+---
 
-### Prerequisites
+## 🧑‍💻 Installation & Setup
+
+### 📌 Prerequisites
 
 Ensure you have the following installed:
 
-- Node.js (v18+)
-- MongoDB (running locally or via Atlas)
-- npm or yarn
+- 🟢 Node.js (v18+)
+- 🍃 MongoDB (locally or via MongoDB Atlas)
+- 🐳 Docker + Docker Compose (for containerization)
 
-### Clone the Repository
+### 📁 Clone the Repository
 
 ```sh
 git clone <repository-url>
 cd order-service
 ```
 
-### Install Dependencies
+### 📦 Install Dependencies
 
 ```sh
 npm install
 ```
 
-### Environment Variables
+### ⚙️ Configure Environment Variables
 
 Create a `.env` file in the project root and configure it:
 
-```
+```bash
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/orderdb
 USER_SERVICE_URL=http://localhost:4000
 JWT_SECRET=your_secret_key
 ```
 
-### Start the Server
+### ▶️ Start the Server
 
 ```sh
 npm start
 ```
 
-## API Endpoints
+Your service will run at:<br />
+👉 http://localhost:5000
 
-### 1. Create an Order
+## 📨 API Endpoints
+
+### 1. 🆕 Create an Order
 
 **POST** `/api/orders`
 
@@ -141,7 +148,7 @@ curl --location 'http://localhost:5000/orders' \
 }'
 ```
 
-### 2. Get Orders
+### 2.📄 Get Orders
 
 **GET** `/api/orders`
 
@@ -194,7 +201,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
 --header 'Authorization: Bearer hfsdjhfjsfbjsdfsdf'
 ```
 
-### 3. Update Order/Product Status
+### 3.✏️ Update Order/Product Status
 
 **PUT** `/api/orders/:orderId`
 
@@ -252,7 +259,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
 }
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 order-service/
@@ -272,6 +279,68 @@ order-service/
 │-- README.md
 ```
 
+## 🐳 Docker Setup
+
+### 📂 Create .dockerignore
+
+```bash
+node_modules
+npm-debug.log
+.env
+```
+
+### 📝 Dockerfile
+
+```bash
+FROM node:18
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 5000
+CMD ["node", "index.js"]
+```
+
+### 🧩 docker-compose.yml
+
+```bash
+version: '3.8'
+
+services:
+  orderservice:
+    build: .
+    container_name: order-service
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/orderdb
+      - USER_SERVICE_URL=http://host.docker.internal:4000
+      - JWT_SECRET=your_secret_key
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: order-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+```
+
+### ▶️ Run Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+Your service will now run at: <br />
+🌐 http://localhost:5000
+
 ## Notes
 
 - The **User Service API** should be running for authentication to work.
@@ -282,12 +351,12 @@ order-service/
 -H "Authorization: Bearer <your_token>"
 ```
 
-## Author
+## 👤 Author
 
 **Ashish Pathak**  
 2024TM93035@wilp.bits-pilani.co.in <br />
 [GitHub](https://github.com/ashish010598)
 
-## License
+## 📝 License
 
 This project is for educational purpose only. Made for Assignment submission for Course: **Scalable Services**
