@@ -359,6 +359,6 @@ Your service will now run at: <br />
 
 ## 📝 License
 
-This project is intended for educational purposes only.
-Built for the assignment submission for the course:
-Scalable Services (BITS Pilani WILP) 👨‍🏫
+This project is intended for educational purposes only.<br/>
+Built for the assignment submission for the course:<br/>
+**Scalable Services (BITS Pilani WILP)** 👨‍🏫
