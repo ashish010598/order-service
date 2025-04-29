@@ -292,7 +292,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
 }
 ```
 
-### 4.✏️ Cancel/Returned Order/Product
+### 4.❌ Cancelled/🔁 Returned Order/Product
 
 **PUT** `/api/orders/:orderId/privilegeStatus`
 
