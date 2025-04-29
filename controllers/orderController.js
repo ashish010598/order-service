@@ -37,3 +37,27 @@ exports.updateOrder = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.handlePrivilegedOrderStatus = async (req, res) => {
+  try {
+    const { id: orderId } = req.params;
+    const { productId, status } = req.body;
+    let order;
+    if (productId) {
+      order = await OrderService.updateOrderWithPrivilege(
+        orderId,
+        productId,
+        status
+      );
+    } else {
+      order = await OrderService.updateOrderWithPrivilege(
+        orderId,
+        null,
+        status
+      );
+    }
+    res.status(200).json({ message: "Order updated successfully", order });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};

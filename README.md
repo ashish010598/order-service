@@ -49,7 +49,8 @@ Create a `.env` file in the project root and configure it:
 
 ```bash
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/orderdb
+# MONGO_URI=mongodb://localhost:27017/orderdb
+MONGO_URI=mongodb://admin:admin@host.docker.internal:27017
 USER_SERVICE_URL=http://localhost:4000
 JWT_SECRET=your_secret_key
 ```
@@ -259,6 +260,64 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
 }
 ```
 
+### 4.✏️ Cancel/Returned Order/Product
+
+**PUT** `/api/orders/:orderId/privilegeStatus`
+
+#### Request Body (single product):
+
+```json
+{
+  "userId": "user_123",
+  "productId": "prod_2",
+  "status": "Cancelled"
+}
+```
+
+#### Request Body (whole order):
+
+```json
+{
+  "userId": "user_123",
+  "status": "Cancelled"
+}
+```
+
+#### Response:
+
+```json
+{
+  "message": "Order updated successfully",
+  "order": {
+    "_id": "67e7736e88e054822c38166e",
+    "userId": "user_123",
+    "products": [
+      {
+        "productName": "Product 1",
+        "productId": "prod_1",
+        "quantity": 1,
+        "price": 100,
+        "status": "Delivered",
+        "_id": "67e7736e88e054822c38166f"
+      },
+      {
+        "productName": "Product 2",
+        "productId": "prod_2",
+        "quantity": 1,
+        "price": 200,
+        "status": "Cancelled",
+        "_id": "67e7736e88e054822c381670"
+      }
+    ],
+    "totalAmount": 300,
+    "status": "Delivered",
+    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
+    "createdAt": "2025-03-29T04:13:34.442Z",
+    "__v": 0
+  }
+}
+```
+
 ## 📁 Project Structure
 
 ```
@@ -314,7 +373,8 @@ services:
       - "5000:5000"
     environment:
       - PORT=5000
-      - MONGO_URI=mongodb://mongo:27017/orderdb
+      # - MONGO_URI=mongodb://mongo:27017/orderdb
+      - mongodb://admin:admin@host.docker.internal:27017
       - USER_SERVICE_URL=http://host.docker.internal:4000
       - JWT_SECRET=your_secret_key
     depends_on:
