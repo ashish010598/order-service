@@ -83,7 +83,7 @@ Your service will run at:<br />
       "price": 100,
       "description": "product 1 is here",
       "category": "category_1",
-      "mageUrl": "http://google.com"
+      "imageUrl": "http://google.com"
     },
     {
       "name": "Product 2",
@@ -92,7 +92,7 @@ Your service will run at:<br />
       "price": 200,
       "description": "product 2 is here",
       "category": "category_1",
-      "mageUrl": "http://google.com"
+      "imageUrl": "http://google.com"
     }
   ]
 }
@@ -112,7 +112,7 @@ Your service will run at:<br />
       "status": "pending",
       "description": "product 1 is here",
       "category": "category_1",
-      "ImageUrl": "http://google.com",
+      "imageUrl": "http://google.com",
       "_id": "67e7736e88e054822c38166f"
     },
     {
@@ -123,7 +123,7 @@ Your service will run at:<br />
       "status": "pending",
       "description": "product 2 is here",
       "category": "category_1",
-      "ImageUrl": "http://google.com",
+      "imageUrl": "http://google.com",
       "_id": "67e7736e88e054822c381670"
     }
   ],
@@ -153,7 +153,7 @@ curl --location 'http://localhost:5000/orders' \
             "status": "pending",
             "description": "product 1 is here",
             "category":"category_1",
-            "ImageUrl":"http://google.com",
+            "imageUrl":"http://google.com",
         }.
         {
             "name": "Product 2",
@@ -163,7 +163,7 @@ curl --location 'http://localhost:5000/orders' \
             "status": "pending",
             "description": "product 2 is here",
             "category":"category_1",
-            "ImageUrl":"http://google.com",
+            "imageUrl":"http://google.com",
         }
     ]
 }'
@@ -197,7 +197,7 @@ curl --location 'http://localhost:5000/orders' \
         "status": "pending",
         "description": "product 1 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "_id": "67e7736e88e054822c38166f"
       },
       {
@@ -208,7 +208,7 @@ curl --location 'http://localhost:5000/orders' \
         "status": "pending",
         "description": "product 2 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "_id": "67e7736e88e054822c381670"
       }
     ],
@@ -267,7 +267,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
         "price": 100,
         "description": "product 1 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "status": "Delivered",
         "_id": "67e7736e88e054822c38166f"
       },
@@ -278,7 +278,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
         "price": 200,
         "description": "product 2 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "status": "in-transit",
         "_id": "67e7736e88e054822c381670"
       }
@@ -331,7 +331,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
         "price": 100,
         "description": "product 1 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "status": "Delivered",
         "_id": "67e7736e88e054822c38166f"
       },
@@ -342,7 +342,7 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
         "price": 200,
         "description": "product 2 is here",
         "category": "category_1",
-        "ImageUrl": "http://google.com",
+        "imageUrl": "http://google.com",
         "status": "Cancelled",
         "_id": "67e7736e88e054822c381670"
       }
