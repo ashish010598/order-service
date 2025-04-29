@@ -77,16 +77,22 @@ Your service will run at:<br />
   "userId": "user_123",
   "products": [
     {
-      "productName": "Product 1",
+      "name": "Product 1",
       "productId": "prod_1",
       "quantity": 1,
-      "price": 100
+      "price": 100,
+      "description": "product 1 is here",
+      "category": "category_1",
+      "mageUrl": "http://google.com"
     },
     {
-      "productName": "Product 2",
+      "name": "Product 2",
       "productId": "prod_2",
       "quantity": 1,
-      "price": 200
+      "price": 200,
+      "description": "product 2 is here",
+      "category": "category_1",
+      "mageUrl": "http://google.com"
     }
   ]
 }
@@ -99,19 +105,25 @@ Your service will run at:<br />
   "userId": "user_123",
   "products": [
     {
-      "productName": "Product 1",
+      "name": "Product 1",
       "productId": "prod_1",
       "quantity": 1,
       "price": 100,
       "status": "pending",
+      "description": "product 1 is here",
+      "category": "category_1",
+      "ImageUrl": "http://google.com",
       "_id": "67e7736e88e054822c38166f"
     },
     {
-      "productName": "Product 2",
+      "name": "Product 2",
       "productId": "prod_2",
       "quantity": 1,
       "price": 200,
       "status": "pending",
+      "description": "product 2 is here",
+      "category": "category_1",
+      "ImageUrl": "http://google.com",
       "_id": "67e7736e88e054822c381670"
     }
   ],
@@ -134,16 +146,24 @@ curl --location 'http://localhost:5000/orders' \
     "userId": "user_123",
     "products": [
         {
-            "productName": "Product 1",
-            "productId":"prod_1",
+            "name": "Product 1",
+            "productId": "prod_1",
             "quantity": 1,
-            "price": 100
-        },
+            "price": 100,
+            "status": "pending",
+            "description": "product 1 is here",
+            "category":"category_1",
+            "ImageUrl":"http://google.com",
+        }.
         {
-            "productName": "Product 2",
+            "name": "Product 2",
             "productId": "prod_2",
             "quantity": 1,
-            "price": 200
+            "price": 200,
+            "status": "pending",
+            "description": "product 2 is here",
+            "category":"category_1",
+            "ImageUrl":"http://google.com",
         }
     ]
 }'
@@ -170,19 +190,25 @@ curl --location 'http://localhost:5000/orders' \
     "userId": "user_123",
     "products": [
       {
-        "productName": "Product 1",
+        "name": "Product 1",
         "productId": "prod_1",
         "quantity": 1,
         "price": 100,
         "status": "pending",
+        "description": "product 1 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "_id": "67e7736e88e054822c38166f"
       },
       {
-        "productName": "Product 2",
+        "name": "Product 2",
         "productId": "prod_2",
         "quantity": 1,
         "price": 200,
         "status": "pending",
+        "description": "product 2 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "_id": "67e7736e88e054822c381670"
       }
     ],
@@ -235,18 +261,24 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
     "userId": "user_123",
     "products": [
       {
-        "productName": "Product 1",
+        "name": "Product 1",
         "productId": "prod_1",
         "quantity": 1,
         "price": 100,
+        "description": "product 1 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "status": "Delivered",
         "_id": "67e7736e88e054822c38166f"
       },
       {
-        "productName": "Product 2",
+        "name": "Product 2",
         "productId": "prod_2",
         "quantity": 1,
         "price": 200,
+        "description": "product 2 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "status": "in-transit",
         "_id": "67e7736e88e054822c381670"
       }
@@ -293,18 +325,24 @@ curl --location 'http://localhost:5000/orders?userId=user_123' \
     "userId": "user_123",
     "products": [
       {
-        "productName": "Product 1",
+        "name": "Product 1",
         "productId": "prod_1",
         "quantity": 1,
         "price": 100,
+        "description": "product 1 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "status": "Delivered",
         "_id": "67e7736e88e054822c38166f"
       },
       {
-        "productName": "Product 2",
+        "name": "Product 2",
         "productId": "prod_2",
         "quantity": 1,
         "price": 200,
+        "description": "product 2 is here",
+        "category": "category_1",
+        "ImageUrl": "http://google.com",
         "status": "Cancelled",
         "_id": "67e7736e88e054822c381670"
       }
