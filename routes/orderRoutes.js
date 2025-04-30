@@ -9,7 +9,7 @@ router.put("/:id", authMiddleware, orderController.updateOrder);
 router.put(
   "/:id/privilegeStatus",
   authMiddleware,
-  orderController.updateOrderWithPrivilege
+  orderController.handlePrivilegedOrderStatus
 );
 
 module.exports = router;

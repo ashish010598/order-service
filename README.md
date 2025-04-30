@@ -48,7 +48,7 @@ npm install
 Create a `.env` file in the project root and configure it:
 
 ```bash
-PORT=5000
+PORT=3002
 # MONGO_URI=mongodb://localhost:27017/orderdb
 MONGO_URI=mongodb://admin:admin@host.docker.internal:27017
 USER_SERVICE_URL=http://localhost:4000
@@ -62,7 +62,7 @@ npm start
 ```
 
 Your service will run at:<br />
-👉 http://localhost:5000
+👉 http://localhost:3002
 
 ## 📨 API Endpoints
 
@@ -139,7 +139,7 @@ Your service will run at:<br />
 #### CURL:
 
 ```ssh
-curl --location 'http://localhost:5000/orders' \
+curl --location 'http://localhost:3002/orders' \
 --header 'Authorization: Bearer sjkjbfsdbbfbbfjshbfjshdbfjsbfjshbfjshb' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -224,7 +224,7 @@ curl --location 'http://localhost:5000/orders' \
 #### CURL:
 
 ```ssh
-curl --location 'http://localhost:5000/orders?userId=user_123' \
+curl --location 'http://localhost:3002/orders?userId=user_123' \
 --header 'Authorization: Bearer hfsdjhfjsfbjsdfsdf'
 ```
 
@@ -394,7 +394,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 5000
+EXPOSE 3002
 CMD ["node", "index.js"]
 ```
 
@@ -408,9 +408,9 @@ services:
     build: .
     container_name: order-service
     ports:
-      - "5000:5000"
+      - "3002:3002"
     environment:
-      - PORT=5000
+      - PORT=3002
       # - MONGO_URI=mongodb://mongo:27017/orderdb
       - mongodb://admin:admin@host.docker.internal:27017
       - USER_SERVICE_URL=http://host.docker.internal:4000
@@ -437,7 +437,7 @@ docker-compose up --build
 ```
 
 Your service will now run at: <br />
-🌐 http://localhost:5000
+🌐 http://localhost:3002
 
 ## Notes
 

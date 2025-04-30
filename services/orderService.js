@@ -11,7 +11,7 @@ const createOrder = async (userId, products) => {
       let availableQuantity;
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/products/${product.productId}`
+          `http://localhost:3004/api/products/${product.productId}`
         );
         availableQuantity = response.data.quantity;
       } catch (error) {
@@ -35,7 +35,7 @@ const createOrder = async (userId, products) => {
     for (const product of products) {
       try {
         await axios.patch(
-          `http://localhost:5000/api/products/${product.productId}`,
+          `http://localhost:3004/api/products/${product.productId}`,
           {
             name: product.name,
             description: product.description,
@@ -115,7 +115,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
         let availableQuantity;
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/products/${product.productId}`
+            `http://localhost:3004/api/products/${product.productId}`
           );
           availableQuantity = response.data.quantity;
         } catch (error) {
@@ -125,7 +125,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
         }
         try {
           await axios.patch(
-            `http://localhost:5000/api/products/${product.productId}`,
+            `http://localhost:3004/api/products/${product.productId}`,
             {
               name: product.name,
               description: product.description,
@@ -159,7 +159,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
       let availableQuantity;
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/products/${product.productId}`
+          `http://localhost:3004/api/products/${product.productId}`
         );
         availableQuantity = response.data.quantity;
       } catch (error) {
@@ -170,7 +170,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
 
       try {
         await axios.patch(
-          `http://localhost:5000/api/products/${product.productId}`,
+          `http://localhost:3004/api/products/${product.productId}`,
           {
             name: product.name,
             description: product.description,

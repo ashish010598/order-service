@@ -10,5 +10,5 @@ connectDB(); // Connect to MongoDB
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/orders", orderRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
