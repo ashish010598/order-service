@@ -2,6 +2,7 @@ const Order = require("../models/Order");
 const {
   ALLOWED_ORDER_STATUSES,
   PRIVILEGED_ORDER_STATUSES,
+  PRIVILEGED_ORDER_STATUSES,
 } = require("../constants");
 
 // Create a new order

@@ -77,22 +77,22 @@ Your service will run at:<br />
   "userId": "user_123",
   "products": [
     {
-      "name": "Product 1",
-      "productId": "prod_1",
+      "name": "LG Refrigerator",
+      "productId": "ELREF_01",
       "quantity": 1,
-      "price": 100,
-      "description": "product 1 is here",
-      "category": "category_1",
-      "imageUrl": "http://google.com"
+      "price": 17500,
+      "description": "100Ltr LG Single Door Refrigerator",
+      "image": "https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+      "category": "ELECTRONICS"
     },
     {
-      "name": "Product 2",
-      "productId": "prod_2",
+      "name": "Refigerator Cover",
+      "productId": "ELPHER_01",
       "quantity": 1,
-      "price": 200,
-      "description": "product 2 is here",
-      "category": "category_1",
-      "imageUrl": "http://google.com"
+      "price": 480,
+      "description": "Cover for 100ltr refrigerator",
+      "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+      "category": "ELECTRONIC_PERIPHERAL"
     }
   ]
 }
@@ -105,33 +105,33 @@ Your service will run at:<br />
   "userId": "user_123",
   "products": [
     {
-      "name": "Product 1",
-      "productId": "prod_1",
+      "name": "LG Refrigerator",
+      "productId": "ELREF_01",
       "quantity": 1,
-      "price": 100,
+      "price": 17500,
       "status": "pending",
-      "description": "product 1 is here",
-      "category": "category_1",
-      "imageUrl": "http://google.com",
-      "_id": "67e7736e88e054822c38166f"
+      "description": "100Ltr LG Single Door Refrigerator",
+      "image": "https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+      "category": "ELECTRONICS",
+      "_id": "68176a7e033a0588c7f26f37"
     },
     {
-      "name": "Product 2",
-      "productId": "prod_2",
+      "name": "Refigerator Cover",
+      "productId": "ELPHER_01",
       "quantity": 1,
-      "price": 200,
+      "price": 480,
       "status": "pending",
-      "description": "product 2 is here",
-      "category": "category_1",
-      "imageUrl": "http://google.com",
-      "_id": "67e7736e88e054822c381670"
+      "description": "Cover for 100ltr refrigerator",
+      "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+      "category": "ELECTRONIC_PERIPHERAL",
+      "_id": "68176a7e033a0588c7f26f38"
     }
   ],
-  "totalAmount": 300,
+  "totalAmount": 17980,
   "status": "pending",
-  "_id": "67e7736e88e054822c38166e",
-  "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
-  "createdAt": "2025-03-29T04:13:34.442Z",
+  "_id": "68176a7e033a0588c7f26f36",
+  "orderId": "2f6492c2-21d9-4041-9cbd-4d2e96294ad5",
+  "createdAt": "2025-05-04T13:24:14.975Z",
   "__v": 0
 }
 ```
@@ -146,24 +146,22 @@ curl --location 'http://localhost:3002/orders' \
     "userId": "user_123",
     "products": [
         {
-            "name": "Product 1",
-            "productId": "prod_1",
+            "name": "LG Refrigerator",
+            "productId":"ELREF_01",
             "quantity": 1,
-            "price": 100,
-            "status": "pending",
-            "description": "product 1 is here",
-            "category":"category_1",
-            "imageUrl":"http://google.com",
-        }.
+            "price": 17500,
+            "description":"100Ltr LG Single Door Refrigerator",
+            "image":"https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+            "category":"ELECTRONICS"
+        },
         {
-            "name": "Product 2",
-            "productId": "prod_2",
+            "name": "Refigerator Cover",
+            "productId": "ELPHER_01",
             "quantity": 1,
-            "price": 200,
-            "status": "pending",
-            "description": "product 2 is here",
-            "category":"category_1",
-            "imageUrl":"http://google.com",
+            "price": 480,
+            "description": "Cover for 100ltr refrigerator",
+            "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+            "category": "ELECTRONIC_PERIPHERAL"
         }
     ]
 }'
@@ -186,36 +184,69 @@ curl --location 'http://localhost:3002/orders' \
 ```json
 [
   {
-    "_id": "67e7736e88e054822c38166e",
+    "_id": "68176936033a0588c7f26f32",
     "userId": "user_123",
     "products": [
       {
-        "name": "Product 1",
-        "productId": "prod_1",
+        "name": "Thinkpad Laptop",
+        "productId": "ELLAP_01",
         "quantity": 1,
-        "price": 100,
+        "price": 7500,
         "status": "pending",
-        "description": "product 1 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "_id": "67e7736e88e054822c38166f"
+        "description": "Thinkpad laptop with 16GB RAM and 1TB Storage",
+        "image": "https://p2-ofp.static.pub//fes/cms/2024/03/20/0xbcadobdac1lq59yhjwmzngsft11s006858.png",
+        "category": "COMPUTERS",
+        "_id": "68176936033a0588c7f26f33"
       },
       {
-        "name": "Product 2",
-        "productId": "prod_2",
+        "name": "ThinkVision Monitor",
+        "productId": "ELMON_03",
         "quantity": 1,
-        "price": 200,
+        "price": 12200,
         "status": "pending",
-        "description": "product 2 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "_id": "67e7736e88e054822c381670"
+        "description": "ThinkVision 27inch LED 4k Monitor",
+        "image": "https://p3-ofp.static.pub/ShareResource/560x450/Monitors/63B4GAR6US/63B4GAR6US-560x450-01.png",
+        "category": "COMPUTERS_PERIPHERAL",
+        "_id": "68176936033a0588c7f26f34"
       }
     ],
-    "totalAmount": 300,
+    "totalAmount": 19700,
     "status": "pending",
-    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
-    "createdAt": "2025-03-29T04:13:34.442Z",
+    "orderId": "d373a867-95c1-4442-a234-41b16b484b4f",
+    "createdAt": "2025-05-04T13:18:46.619Z",
+    "__v": 0
+  },
+  {
+    "_id": "68176a7e033a0588c7f26f36",
+    "userId": "user_123",
+    "products": [
+      {
+        "name": "LG Refrigerator",
+        "productId": "ELREF_01",
+        "quantity": 1,
+        "price": 17500,
+        "status": "pending",
+        "description": "100Ltr LG Single Door Refrigerator",
+        "image": "https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+        "category": "ELECTRONICS",
+        "_id": "68176a7e033a0588c7f26f37"
+      },
+      {
+        "name": "Refigerator Cover",
+        "productId": "ELPHER_01",
+        "quantity": 1,
+        "price": 480,
+        "status": "pending",
+        "description": "Cover for 100ltr refrigerator",
+        "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+        "category": "ELECTRONIC_PERIPHERAL",
+        "_id": "68176a7e033a0588c7f26f38"
+      }
+    ],
+    "totalAmount": 17980,
+    "status": "pending",
+    "orderId": "2f6492c2-21d9-4041-9cbd-4d2e96294ad5",
+    "createdAt": "2025-05-04T13:24:14.975Z",
     "__v": 0
   }
 ]
@@ -237,9 +268,63 @@ curl --location 'http://localhost:3002/orders?userId=user_123' \
 ```json
 {
   "userId": "user_123",
-  "productId": "prod_1",
-  "status": "in-transit"
+  "productId": "ELLAP_01",
+  "status": "shipped"
 }
+```
+
+#### Response (Single product)
+
+```json
+{
+  "message": "Order updated successfully",
+  "order": {
+    "_id": "68176936033a0588c7f26f32",
+    "userId": "user_123",
+    "products": [
+      {
+        "name": "Thinkpad Laptop",
+        "productId": "ELLAP_01",
+        "quantity": 1,
+        "price": 7500,
+        "status": "shipped",
+        "description": "Thinkpad laptop with 16GB RAM and 1TB Storage",
+        "image": "https://p2-ofp.static.pub//fes/cms/2024/03/20/0xbcadobdac1lq59yhjwmzngsft11s006858.png",
+        "category": "COMPUTERS",
+        "_id": "68176936033a0588c7f26f33"
+      },
+      {
+        "name": "ThinkVision Monitor",
+        "productId": "ELMON_03",
+        "quantity": 1,
+        "price": 12200,
+        "status": "pending",
+        "description": "ThinkVision 27inch LED 4k Monitor",
+        "image": "https://p3-ofp.static.pub/ShareResource/560x450/Monitors/63B4GAR6US/63B4GAR6US-560x450-01.png",
+        "category": "COMPUTERS_PERIPHERAL",
+        "_id": "68176936033a0588c7f26f34"
+      }
+    ],
+    "totalAmount": 19700,
+    "status": "pending",
+    "orderId": "d373a867-95c1-4442-a234-41b16b484b4f",
+    "createdAt": "2025-05-04T13:18:46.619Z",
+    "__v": 0
+  }
+}
+```
+
+#### curl
+
+```ssh
+curl --location --request PUT 'http://localhost:3002/orders/d373a867-95c1-4442-a234-41b16b484b4f' \
+--header 'Authorization: Bearer sdajsbjsdfhbsjbfsdfsdfsdfsds' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": "user_123",
+    "productId": "ELLAP_01",
+    "status":"shipped"
+}'
 ```
 
 #### Request Body (whole order):
@@ -247,49 +332,61 @@ curl --location 'http://localhost:3002/orders?userId=user_123' \
 ```json
 {
   "userId": "user_123",
-  "status": "in-transit"
+  "status": "delivered"
 }
 ```
 
-#### Response:
+#### Response (whole order):
 
 ```json
 {
   "message": "Order updated successfully",
   "order": {
-    "_id": "67e7736e88e054822c38166e",
+    "_id": "68176936033a0588c7f26f32",
     "userId": "user_123",
     "products": [
       {
-        "name": "Product 1",
-        "productId": "prod_1",
+        "name": "Thinkpad Laptop",
+        "productId": "ELLAP_01",
         "quantity": 1,
-        "price": 100,
-        "description": "product 1 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "status": "Delivered",
-        "_id": "67e7736e88e054822c38166f"
+        "price": 7500,
+        "status": "delivered",
+        "description": "Thinkpad laptop with 16GB RAM and 1TB Storage",
+        "image": "https://p2-ofp.static.pub//fes/cms/2024/03/20/0xbcadobdac1lq59yhjwmzngsft11s006858.png",
+        "category": "COMPUTERS",
+        "_id": "68176936033a0588c7f26f33"
       },
       {
-        "name": "Product 2",
-        "productId": "prod_2",
+        "name": "ThinkVision Monitor",
+        "productId": "ELMON_03",
         "quantity": 1,
-        "price": 200,
-        "description": "product 2 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "status": "in-transit",
-        "_id": "67e7736e88e054822c381670"
+        "price": 12200,
+        "status": "delivered",
+        "description": "ThinkVision 27inch LED 4k Monitor",
+        "image": "https://p3-ofp.static.pub/ShareResource/560x450/Monitors/63B4GAR6US/63B4GAR6US-560x450-01.png",
+        "category": "COMPUTERS_PERIPHERAL",
+        "_id": "68176936033a0588c7f26f34"
       }
     ],
-    "totalAmount": 300,
-    "status": "in-transit",
-    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
-    "createdAt": "2025-03-29T04:13:34.442Z",
+    "totalAmount": 19700,
+    "status": "delivered",
+    "orderId": "d373a867-95c1-4442-a234-41b16b484b4f",
+    "createdAt": "2025-05-04T13:18:46.619Z",
     "__v": 0
   }
 }
+```
+
+#### curl
+
+```ssh
+curl --location --request PUT 'http://localhost:3002/orders/d373a867-95c1-4442-a234-41b16b484b4f' \
+--header 'Authorization: Bearer sdajsbjsdfhbsjbfsdfsdfsdfsds' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": "user_123",
+    "status":"delivered"
+}'
 ```
 
 ### 4.❌ Cancelled/🔁 Returned Order/Product
@@ -301,9 +398,63 @@ curl --location 'http://localhost:3002/orders?userId=user_123' \
 ```json
 {
   "userId": "user_123",
-  "productId": "prod_2",
-  "status": "Cancelled"
+  "productId": "ELREF_01",
+  "status": "cancelled"
 }
+```
+
+#### Response (Single Product)
+
+```json
+{
+  "message": "Order updated successfully",
+  "order": {
+    "_id": "68176a7e033a0588c7f26f36",
+    "userId": "user_123",
+    "products": [
+      {
+        "name": "LG Refrigerator",
+        "productId": "ELREF_01",
+        "quantity": 1,
+        "price": 17500,
+        "status": "cancelled",
+        "description": "100Ltr LG Single Door Refrigerator",
+        "image": "https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+        "category": "ELECTRONICS",
+        "_id": "68176a7e033a0588c7f26f37"
+      },
+      {
+        "name": "Refigerator Cover",
+        "productId": "ELPHER_01",
+        "quantity": 1,
+        "price": 480,
+        "status": "pending",
+        "description": "Cover for 100ltr refrigerator",
+        "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+        "category": "ELECTRONIC_PERIPHERAL",
+        "_id": "68176a7e033a0588c7f26f38"
+      }
+    ],
+    "totalAmount": 17980,
+    "status": "pending",
+    "orderId": "2f6492c2-21d9-4041-9cbd-4d2e96294ad5",
+    "createdAt": "2025-05-04T13:24:14.975Z",
+    "__v": 0
+  }
+}
+```
+
+#### curl
+
+```ssh
+curl --location --request PUT 'http://localhost:3002/orders/2f6492c2-21d9-4041-9cbd-4d2e96294ad5/privilegeStatus' \
+--header 'Authorization: Bearer asjdasjbbsfsdfsdf' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": "user_123",
+    "productId": "ELREF_01",
+    "status":"cancelled"
+}'
 ```
 
 #### Request Body (whole order):
@@ -311,49 +462,61 @@ curl --location 'http://localhost:3002/orders?userId=user_123' \
 ```json
 {
   "userId": "user_123",
-  "status": "Cancelled"
+  "status": "cancelled"
 }
 ```
 
-#### Response:
+#### Response (whole order):
 
 ```json
 {
   "message": "Order updated successfully",
   "order": {
-    "_id": "67e7736e88e054822c38166e",
+    "_id": "68176a7e033a0588c7f26f36",
     "userId": "user_123",
     "products": [
       {
-        "name": "Product 1",
-        "productId": "prod_1",
+        "name": "LG Refrigerator",
+        "productId": "ELREF_01",
         "quantity": 1,
-        "price": 100,
-        "description": "product 1 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "status": "Delivered",
-        "_id": "67e7736e88e054822c38166f"
+        "price": 17500,
+        "status": "cancelled",
+        "description": "100Ltr LG Single Door Refrigerator",
+        "image": "https://www.lg.com/content/dam/channel/wcms/in/images/refrigerators/gl-d201abeu/gallery/promotion-offer/thum-1600x1062.jpeg/_jcr_content/renditions/thum-1600x1062.jpeg",
+        "category": "ELECTRONICS",
+        "_id": "68176a7e033a0588c7f26f37"
       },
       {
-        "name": "Product 2",
-        "productId": "prod_2",
+        "name": "Refigerator Cover",
+        "productId": "ELPHER_01",
         "quantity": 1,
-        "price": 200,
-        "description": "product 2 is here",
-        "category": "category_1",
-        "imageUrl": "http://google.com",
-        "status": "Cancelled",
-        "_id": "67e7736e88e054822c381670"
+        "price": 480,
+        "status": "cancelled",
+        "description": "Cover for 100ltr refrigerator",
+        "image": "https://m.media-amazon.com/images/I/51JIaUJJnhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+        "category": "ELECTRONIC_PERIPHERAL",
+        "_id": "68176a7e033a0588c7f26f38"
       }
     ],
-    "totalAmount": 300,
-    "status": "Delivered",
-    "orderId": "e8277c3d-57c8-4645-82d4-3a8fcc47b360",
-    "createdAt": "2025-03-29T04:13:34.442Z",
+    "totalAmount": 17980,
+    "status": "cancelled",
+    "orderId": "2f6492c2-21d9-4041-9cbd-4d2e96294ad5",
+    "createdAt": "2025-05-04T13:24:14.975Z",
     "__v": 0
   }
 }
+```
+
+#### curl
+
+```ssh
+curl --location --request PUT 'http://localhost:3002/orders/2f6492c2-21d9-4041-9cbd-4d2e96294ad5/privilegeStatus' \
+--header 'Authorization: Bearer asjdasjbbsfsdfsdf' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": "user_123",
+    "status":"cancelled"
+}'
 ```
 
 ## 📁 Project Structure
