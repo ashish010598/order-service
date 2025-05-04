@@ -1,3 +1,4 @@
+const { producer } = require("../utils/kafka");
 const Order = require("../models/Order");
 const {
   ALLOWED_ORDER_STATUSES,
@@ -51,6 +52,21 @@ const createOrder = async (userId, products) => {
         );
       }
     }
+    await producer.send({
+      topic: "order-events",
+      messages: [
+        {
+          key: "order-created",
+          value: JSON.stringify({
+            event: "order-created",
+            orderId: savedOrder.orderId,
+            userId,
+            products,
+            totalAmount,
+          }),
+        },
+      ],
+    });
     return savedOrder;
   } catch (error) {
     throw new Error(error.message || "Error creating order");
@@ -87,7 +103,22 @@ const updateOrder = async (orderId, productId, status) => {
       }
     });
   }
-  return await order.save();
+  const updatedOrder = await order.save();
+  await producer.send({
+    topic: "order-events",
+    messages: [
+      {
+        key: "order-updated",
+        value: JSON.stringify({
+          event: "order-updated",
+          orderId: updatedOrder.orderId,
+          status: updatedOrder.status,
+          products: updatedOrder.products,
+        }),
+      },
+    ],
+  });
+  return updatedOrder;
 };
 
 // Update order status with privileged status
@@ -189,7 +220,22 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
     }
     order.status = status;
   }
-  return await order.save();
+  const updatedOrder = await order.save();
+  await producer.send({
+    topic: "order-events",
+    messages: [
+      {
+        key: "order-privileged-status-updated",
+        value: JSON.stringify({
+          event: "order-privileged-status-updated",
+          orderId: updatedOrder.orderId,
+          status: updatedOrder.status,
+          products: updatedOrder.products,
+        }),
+      },
+    ],
+  });
+  return updatedOrder;
 };
 
 module.exports = {
