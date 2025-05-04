@@ -2,28 +2,29 @@ const Order = require("../models/Order");
 const {
   ALLOWED_ORDER_STATUSES,
   PRIVILEGED_ORDER_STATUSES,
+  EXCLUDED_STATUSES,
 } = require("../constants");
 
 // Create a new order
 const createOrder = async (userId, products) => {
   try {
-    for (const product of products) {
-      let availableQuantity;
-      try {
-        const response = await axios.get(
-          `http://localhost:3004/api/products/${product.productId}`
-        );
-        availableQuantity = response.data.quantity;
-      } catch (error) {
-        throw new Error(
-          `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
-        );
-      }
+    // for (const product of products) {
+    //   let availableQuantity;
+    //   try {
+    //     const response = await axios.get(
+    //       `http://localhost:3004/api/products/${product.productId}`
+    //     );
+    //     availableQuantity = response.data.quantity;
+    //   } catch (error) {
+    //     throw new Error(
+    //       `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
+    //     );
+    //   }
 
-      if (product.quantity > availableQuantity) {
-        throw new Error(`Quantity not available for product: ${product.name}`);
-      }
-    }
+    //   if (product.quantity > availableQuantity) {
+    //     throw new Error(`Quantity not available for product: ${product.name}`);
+    //   }
+    // }
     const totalAmount = products.reduce(
       (sum, p) => sum + p.price * p.quantity,
       0
@@ -32,25 +33,25 @@ const createOrder = async (userId, products) => {
     const savedOrder = await order.save();
 
     // Update the available quantity in the Product Service
-    for (const product of products) {
-      try {
-        await axios.patch(
-          `http://localhost:3004/api/products/${product.productId}`,
-          {
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            imageUrl: product.imageUrl,
-            category: product.category,
-            quantity: availableQuantity - product.quantity,
-          }
-        );
-      } catch (error) {
-        throw new Error(
-          `Failed to update available quantity for product: ${product.name}. ${error.message}`
-        );
-      }
-    }
+    // for (const product of products) {
+    //   try {
+    //     await axios.patch(
+    //       `http://localhost:3004/api/products/${product.productId}`,
+    //       {
+    //         name: product.name,
+    //         description: product.description,
+    //         price: product.price,
+    //         imageUrl: product.imageUrl,
+    //         category: product.category,
+    //         quantity: availableQuantity - product.quantity,
+    //       }
+    //     );
+    //   } catch (error) {
+    //     throw new Error(
+    //       `Failed to update available quantity for product: ${product.name}. ${error.message}`
+    //     );
+    //   }
+    // }
     return savedOrder;
   } catch (error) {
     throw new Error(error.message || "Error creating order");
@@ -112,34 +113,34 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
             `Cannot update product with ID ${productId} to ${status} as it is in a conflicting state (${product.status}).`
           );
         }
-        let availableQuantity;
-        try {
-          const response = await axios.get(
-            `http://localhost:3004/api/products/${product.productId}`
-          );
-          availableQuantity = response.data.quantity;
-        } catch (error) {
-          throw new Error(
-            `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
-          );
-        }
-        try {
-          await axios.patch(
-            `http://localhost:3004/api/products/${product.productId}`,
-            {
-              name: product.name,
-              description: product.description,
-              price: product.price,
-              imageUrl: product.imageUrl,
-              category: product.category,
-              quantity: availableQuantity + product.quantity,
-            }
-          );
-        } catch (error) {
-          throw new Error(
-            `Failed to update available quantity for product: ${product.name}. ${error.message}`
-          );
-        }
+        // let availableQuantity;
+        // try {
+        //   const response = await axios.get(
+        //     `http://localhost:3004/api/products/${product.productId}`
+        //   );
+        //   availableQuantity = response.data.quantity;
+        // } catch (error) {
+        //   throw new Error(
+        //     `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
+        //   );
+        // }
+        // try {
+        //   await axios.patch(
+        //     `http://localhost:3004/api/products/${product.productId}`,
+        //     {
+        //       name: product.name,
+        //       description: product.description,
+        //       price: product.price,
+        //       imageUrl: product.imageUrl,
+        //       category: product.category,
+        //       quantity: availableQuantity + product.quantity,
+        //     }
+        //   );
+        // } catch (error) {
+        //   throw new Error(
+        //     `Failed to update available quantity for product: ${product.name}. ${error.message}`
+        //   );
+        // }
         product.status = status;
         productFound = true;
         break;
@@ -156,35 +157,35 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
       ) {
         continue;
       }
-      let availableQuantity;
-      try {
-        const response = await axios.get(
-          `http://localhost:3004/api/products/${product.productId}`
-        );
-        availableQuantity = response.data.quantity;
-      } catch (error) {
-        throw new Error(
-          `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
-        );
-      }
+      // let availableQuantity;
+      // try {
+      //   const response = await axios.get(
+      //     `http://localhost:3004/api/products/${product.productId}`
+      //   );
+      //   availableQuantity = response.data.quantity;
+      // } catch (error) {
+      //   throw new Error(
+      //     `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
+      //   );
+      // }
 
-      try {
-        await axios.patch(
-          `http://localhost:3004/api/products/${product.productId}`,
-          {
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            imageUrl: product.imageUrl,
-            category: product.category,
-            quantity: availableQuantity + product.quantity,
-          }
-        );
-      } catch (error) {
-        throw new Error(
-          `Failed to update available quantity for product: ${product.name}. ${error.message}`
-        );
-      }
+      // try {
+      //   await axios.patch(
+      //     `http://localhost:3004/api/products/${product.productId}`,
+      //     {
+      //       name: product.name,
+      //       description: product.description,
+      //       price: product.price,
+      //       imageUrl: product.imageUrl,
+      //       category: product.category,
+      //       quantity: availableQuantity + product.quantity,
+      //     }
+      //   );
+      // } catch (error) {
+      //   throw new Error(
+      //     `Failed to update available quantity for product: ${product.name}. ${error.message}`
+      //   );
+      // }
       product.status = status;
     }
     order.status = status;

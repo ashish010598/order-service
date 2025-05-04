@@ -44,13 +44,13 @@ exports.handlePrivilegedOrderStatus = async (req, res) => {
     const { productId, status } = req.body;
     let order;
     if (productId) {
-      order = await OrderService.updateOrderWithPrivilege(
+      order = await OrderService.handlePrivilegedOrderStatus(
         orderId,
         productId,
         status
       );
     } else {
-      order = await OrderService.updateOrderWithPrivilege(
+      order = await OrderService.handlePrivilegedOrderStatus(
         orderId,
         null,
         status
