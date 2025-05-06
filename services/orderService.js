@@ -1,3 +1,4 @@
+const { sendUserEvent } = require("./kafkaProducer");
 const Order = require("../models/Order");
 const {
   ALLOWED_ORDER_STATUSES,
@@ -12,7 +13,7 @@ const createOrder = async (userId, products) => {
       let availableQuantity;
       try {
         const response = await axios.get(
-          `http://product-service/api/products/${product.productId}`
+          `${process.env.HOST_URL}:3004/api/products/${product.productId}`
         );
         availableQuantity = response.data.quantity;
       } catch (error) {
@@ -36,7 +37,7 @@ const createOrder = async (userId, products) => {
     for (const product of products) {
       try {
         await axios.patch(
-          `http://product-service/api/products/${product.productId}`,
+          `${process.env.HOST_URL}:3004/api/products/${product.productId}`,
           {
             name: product.name,
             description: product.description,
@@ -52,6 +53,12 @@ const createOrder = async (userId, products) => {
         );
       }
     }
+    await sendUserEvent("orders", "ORDER_CREATED", {
+      orderId: savedOrder.orderId,
+      userId,
+      products,
+      totalAmount,
+    });
     return savedOrder;
   } catch (error) {
     throw new Error(error.message || "Error creating order");
@@ -88,7 +95,13 @@ const updateOrder = async (orderId, productId, status) => {
       }
     });
   }
-  return await order.save();
+  const updatedOrder = await order.save();
+  await sendUserEvent("orders", "ORDERS_UPDATED", {
+    orderId: updatedOrder.orderId,
+    status: updatedOrder.status,
+    products: updatedOrder.products,
+  });
+  return updatedOrder;
 };
 
 // Update order status with privileged status
@@ -116,7 +129,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
         let availableQuantity;
         try {
           const response = await axios.get(
-            `http://product-service/api/products/${product.productId}`
+            `${process.env.HOST_URL}:3004/api/products/${product.productId}`
           );
           availableQuantity = response.data.quantity;
         } catch (error) {
@@ -126,7 +139,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
         }
         try {
           await axios.patch(
-            `http://product-service/api/products/${product.productId}`,
+            `${process.env.HOST_URL}:3004/api/products/${product.productId}`,
             {
               name: product.name,
               description: product.description,
@@ -160,7 +173,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
       let availableQuantity;
       try {
         const response = await axios.get(
-          `http://product-service/api/products/${product.productId}`
+          `${process.env.HOST_URL}:3004/api/products/${product.productId}`
         );
         availableQuantity = response.data.quantity;
       } catch (error) {
@@ -171,7 +184,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
 
       try {
         await axios.patch(
-          `http://product-service/api/products/${product.productId}`,
+          `${process.env.HOST_URL}:3004/api/products/${product.productId}`,
           {
             name: product.name,
             description: product.description,
@@ -190,7 +203,13 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
     }
     order.status = status;
   }
-  return await order.save();
+  const updatedOrder = await order.save();
+  await sendUserEvent("orders", "ORDER_PRIVELEGE_UPDATED", {
+    orderId: updatedOrder.orderId,
+    status: updatedOrder.status,
+    products: updatedOrder.products,
+  });
+  return updatedOrder;
 };
 
 module.exports = {

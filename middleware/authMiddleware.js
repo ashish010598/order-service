@@ -2,21 +2,14 @@ const axios = require("axios");
 
 const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
-  let { userId } = req.body;
-  if (req.method === "GET") {
-    userId = req.query.userId;
-  }
-  if (!token || !userId) {
-    return res
-      .status(401)
-      .json({ message: "Unauthorized: Missing token or userId" });
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized: Missing token" });
   }
 
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       // "https://0b16ffac-8740-481a-916c-bb123b0af0ac.mock.pstmn.io/tokenValidator",
-      "http://user-service/api/users/verify-token",
-      { userId },
+      `${process.env.HOST_URL}:3001/api/users/verify-token`,
       {
         headers: { Authorization: token },
       }
