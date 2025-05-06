@@ -15,7 +15,7 @@ const authMiddleware = async (req, res, next) => {
   try {
     const response = await axios.post(
       // "https://0b16ffac-8740-481a-916c-bb123b0af0ac.mock.pstmn.io/tokenValidator",
-      "http://localhost:3001/api/users/verify-token",
+      "http://user-service/api/users/verify-token",
       { userId },
       {
         headers: { Authorization: token },
