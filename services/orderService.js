@@ -1,3 +1,4 @@
+const axios = require("axios");
 const { sendUserEvent } = require("./kafkaProducer");
 const Order = require("../models/Order");
 const {
@@ -10,19 +11,17 @@ const {
 const createOrder = async (userId, products) => {
   try {
     for (const product of products) {
-      let availableQuantity;
       try {
         const response = await axios.get(
           `${process.env.HOST_URL}:3004/api/products/${product.productId}`
         );
-        availableQuantity = response.data.quantity;
+        product.availableQuantity = response.data.quantity;
       } catch (error) {
         throw new Error(
           `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
         );
       }
-
-      if (product.quantity > availableQuantity) {
+      if (product.quantity > product.availableQuantity) {
         throw new Error(`Quantity not available for product: ${product.name}`);
       }
     }
@@ -36,7 +35,7 @@ const createOrder = async (userId, products) => {
     // Update the available quantity in the Product Service
     for (const product of products) {
       try {
-        await axios.patch(
+        const response = await axios.patch(
           `${process.env.HOST_URL}:3004/api/products/${product.productId}`,
           {
             name: product.name,
@@ -44,7 +43,7 @@ const createOrder = async (userId, products) => {
             price: product.price,
             imageUrl: product.imageUrl,
             category: product.category,
-            quantity: availableQuantity - product.quantity,
+            quantity: product.availableQuantity - product.quantity,
           }
         );
       } catch (error) {
@@ -126,12 +125,12 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
             `Cannot update product with ID ${productId} to ${status} as it is in a conflicting state (${product.status}).`
           );
         }
-        let availableQuantity;
+
         try {
           const response = await axios.get(
             `${process.env.HOST_URL}:3004/api/products/${product.productId}`
           );
-          availableQuantity = response.data.quantity;
+          product.availableQuantity = response.data.quantity;
         } catch (error) {
           throw new Error(
             `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
@@ -146,7 +145,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
               price: product.price,
               imageUrl: product.imageUrl,
               category: product.category,
-              quantity: availableQuantity + product.quantity,
+              quantity: product.availableQuantity + product.quantity,
             }
           );
         } catch (error) {
@@ -170,12 +169,11 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
       ) {
         continue;
       }
-      let availableQuantity;
       try {
         const response = await axios.get(
           `${process.env.HOST_URL}:3004/api/products/${product.productId}`
         );
-        availableQuantity = response.data.quantity;
+        product.availableQuantity = response.data.quantity;
       } catch (error) {
         throw new Error(
           `Failed to fetch available quantity for product: ${product.name}. ${error.message}`
@@ -191,7 +189,7 @@ const handlePrivilegedOrderStatus = async (orderId, productId, status) => {
             price: product.price,
             imageUrl: product.imageUrl,
             category: product.category,
-            quantity: availableQuantity + product.quantity,
+            quantity: product.availableQuantity + product.quantity,
           }
         );
       } catch (error) {

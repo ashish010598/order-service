@@ -21,3 +21,7 @@ const sendUserEvent = async (topic, eventType, userData) => {
     console.error("Failed to send user event:", err);
   }
 };
+
+module.exports = {
+  sendUserEvent,
+};

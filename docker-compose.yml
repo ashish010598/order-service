@@ -10,4 +10,6 @@ services:
       - PORT=3002
       - MONGO_URI=mongodb://admin:admin@host.docker.internal:27017
     image: ashish010598/order-service:latest
+    env_file:
+      - .env
 

@@ -8,9 +8,22 @@ const kafka = new Kafka({
 
 const producer = kafka.producer();
 
+const consumer = kafka.consumer({ groupId: "order-service-group" });
+
 const connectProducer = async () => {
   await producer.connect();
   console.log("Kafka Producer for Order Service Connected");
 };
 
-module.exports = { kafka, producer, connectProducer };
+const connectConsumer = async () => {
+  await consumer.connect();
+  console.log("Kafka Producer for Order Service Connected");
+};
+
+module.exports = {
+  kafka,
+  producer,
+  consumer,
+  connectProducer,
+  connectConsumer,
+};
